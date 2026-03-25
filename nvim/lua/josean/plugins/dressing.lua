@@ -1,0 +1,23 @@
+return {
+  "stevearc/dressing.nvim",
+  event = "VeryLazy",
+  opts = {
+    input = {
+      enabled = true,
+      border = "rounded",
+      win_options = {
+        winblend = 0,
+      },
+    },
+    select = {
+      enabled = true,
+      backend = { "telescope", "builtin" },
+      builtin = {
+        border = "rounded",
+        win_options = {
+          winblend = 0,
+        },
+      },
+    },
+  },
+}

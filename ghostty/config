@@ -1,0 +1,54 @@
+font-family = Red Hat Mono Regular
+theme = Apple System Colors
+font-size = 18
+background-blur-radius = 20
+mouse-hide-while-typing = true
+window-decoration = true
+macos-option-as-alt = true
+background-opacity = 0.7
+
+# Shell integration - better command tracking, working directory
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Clipboard improvements
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+# Scrollback buffer
+scrollback-limit = 100000
+
+# Better text selection
+copy-on-select = false
+quick-terminal-position = top
+
+# Visual & Comfort
+window-padding-x = 8
+window-padding-y = 8
+cursor-style = block
+cursor-style-blink = true
+adjust-cell-height = 10%
+
+# Split panes appearance
+unfocused-split-opacity = 0.8
+
+# Font features (ligatures)
+font-feature = +liga
+
+# Auto-update & Safety
+auto-update = check
+quit-after-last-window-closed = false
+confirm-close-surface = true
+
+# Keybindings - Font size
+keybind = cmd+plus=increase_font_size:1
+keybind = cmd+minus=decrease_font_size:1
+keybind = cmd+0=reset_font_size
+
+# Keybindings - Split panes
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# Keybindings - Utilities
+keybind = cmd+k=clear_screen
