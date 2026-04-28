@@ -66,13 +66,87 @@ install_nvim() {
     print_success "Neovim config installed"
 }
 
+# Install Zsh config
+install_zsh() {
+    echo ""
+    echo "🐚 Installing Zsh config..."
+
+    backup_config "$HOME/.zshrc"
+    backup_config "$HOME/.zprofile"
+
+    cp zsh/.zshrc "$HOME/.zshrc"
+    cp zsh/.zprofile "$HOME/.zprofile"
+
+    print_success "Zsh config installed"
+}
+
+# Install Starship config
+install_starship() {
+    echo ""
+    echo "🚀 Installing Starship config..."
+
+    backup_config "$HOME/.config/starship.toml"
+
+    mkdir -p "$HOME/.config"
+    cp starship/starship.toml "$HOME/.config/starship.toml"
+
+    print_success "Starship config installed"
+}
+
+# Install modern CLI tools
+install_tools() {
+    echo ""
+    echo "🛠️  Modern CLI Tools Installation"
+    echo ""
+    echo "This setup uses modern Rust-based CLI tools:"
+    echo "  • eza       - Better ls (colors, icons, git)"
+    echo "  • bat       - Better cat (syntax highlighting)"
+    echo "  • fd        - Better find (faster, simpler)"
+    echo "  • ripgrep   - Better grep (blazing fast)"
+    echo "  • btop      - Better top (beautiful monitor)"
+    echo "  • dust      - Better du (visual disk usage)"
+    echo "  • duf       - Better df (modern disk info)"
+    echo "  • zoxide    - Smart cd (learns your habits)"
+    echo "  • fzf       - Fuzzy finder"
+    echo "  • lazygit   - Git TUI"
+    echo "  • starship  - Fast prompt"
+    echo ""
+    echo "Also includes Zsh plugins:"
+    echo "  • zsh-autosuggestions"
+    echo "  • zsh-syntax-highlighting"
+    echo "  • powerlevel10k"
+    echo ""
+    read -p "Install these tools via Homebrew? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo ""
+        echo "Installing tools..."
+
+        # Check if Homebrew is installed
+        if ! command -v brew &> /dev/null; then
+            print_error "Homebrew is not installed. Please install it first:"
+            echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+            return 1
+        fi
+
+        brew install eza bat fd ripgrep btop dust duf zoxide fzf lazygit starship
+        brew install zsh-autosuggestions zsh-syntax-highlighting powerlevel10k
+
+        print_success "All tools installed successfully!"
+    else
+        print_warning "Skipping tool installation. You can install them later with:"
+        echo "  brew install eza bat fd ripgrep btop dust duf zoxide fzf lazygit starship"
+        echo "  brew install zsh-autosuggestions zsh-syntax-highlighting powerlevel10k"
+    fi
+}
+
 # Main installation
 main() {
     echo ""
-    echo "╔════════════════════════════════════════╗"
-    echo "║   Modern Dev Setup Installer          ║"
-    echo "║   Ghostty + Neovim                     ║"
-    echo "╚════════════════════════════════════════╝"
+    echo "╔═════════════════════════════════════════════╗"
+    echo "║   Modern Dev Setup Installer               ║"
+    echo "║   Ghostty + Neovim + Zsh + Modern CLI      ║"
+    echo "╚═════════════════════════════════════════════╝"
     echo ""
 
     # Check if we're in the dotfiles directory
@@ -84,17 +158,21 @@ main() {
     # Install configs
     install_ghostty
     install_nvim
+    install_zsh
+    install_starship
+    install_tools
 
     echo ""
     print_success "Installation complete!"
     echo ""
     echo "Next steps:"
-    echo "  1. Restart Ghostty (or your terminal)"
-    echo "  2. Run 'nvim' to install plugins (lazy.nvim will auto-install)"
-    echo "  3. Restart Neovim after plugins install"
-    echo "  4. Press 'Space' in Neovim to see available commands"
+    echo "  1. Restart your terminal (or run: source ~/.zshrc)"
+    echo "  2. If you installed Powerlevel10k, run: p10k configure"
+    echo "  3. Open Neovim to install plugins (lazy.nvim will auto-install)"
+    echo "  4. Restart Neovim after plugins install"
+    echo "  5. Press 'Space' in Neovim to see available commands"
     echo ""
-    echo "📖 See README.md for keybinds and customization"
+    echo "📖 See README.md for keybinds, aliases, and customization"
     echo ""
 }
 

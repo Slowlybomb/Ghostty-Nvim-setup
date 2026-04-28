@@ -1,5 +1,5 @@
 font-family = Red Hat Mono Regular
-theme = Apple System Colors
+theme = GitHub Dark Dimmed
 font-size = 18
 background-blur-radius = 20
 mouse-hide-while-typing = true
@@ -52,3 +52,7 @@ keybind = cmd+shift+d=new_split:down
 
 # Keybindings - Utilities
 keybind = cmd+k=clear_screen
+
+# Keybindings - Theme switching
+keybind = cmd+shift+w=set_theme:GitHub Dark Dimmed
+keybind = cmd+shift+l=set_theme:GitHub Light
